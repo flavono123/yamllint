@@ -94,4 +94,12 @@ describe 'YamlLint::Linter' do
   it 'should be unhappy with a YAML that has a double quote in double quoted string' do
     expect(linter.check(spec_data('invalid_with_double_quote.yaml'))).to be(false)
   end
+
+  it 'shoud be happy with a YAML file with duplicated values under an alias' do
+    expect(linter.check(spec_data('alias_dup_values.yaml'))).to be(true)
+  end
+
+  it 'shoud be unhappy with a YAML file with duplicated keys under an alias' do
+    expect(linter.check(spec_data('alias_dup_keys.yaml'))).to be(false)
+  end
 end
